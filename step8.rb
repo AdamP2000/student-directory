@@ -26,9 +26,12 @@ end
 
 def print(students)
   student_counter = 1
-  students.each do |student|
-    puts student_counter.to_s + "." + " #{student[:name]} (#{student[:cohort]} cohort)"
+  index = 0
+  while index <= students.length - 1
+    new_arr = students[index]
+    puts student_counter.to_s + "." + " #{new_arr[:name]} (#{new_arr[:cohort]} cohort)"
     student_counter += 1
+    index += 1
   end
 end
 
