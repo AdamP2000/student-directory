@@ -8,7 +8,7 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    if name[0] == "A"
+    if name[0] == "A" && name.length < 12
       students << {name: name, cohort: :november}
       puts "Now we have #{students.count} students"
     end
