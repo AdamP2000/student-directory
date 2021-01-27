@@ -37,8 +37,8 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(148)
+  puts "-------------".center(148)
 end
 
 def print(students)
@@ -46,14 +46,15 @@ def print(students)
   index = 0
   while index <= students.length - 1
     new_arr = students[index]
-    puts student_counter.to_s + "." + " #{new_arr[:name]} (#{new_arr[:cohort]} cohort) (#{new_arr[:hobby]} is their hobby) (#{new_arr[:country]} is their birthplace) (#{new_arr[:height]} feet tall)"
+    puts (student_counter.to_s + "." + " #{new_arr[:name]} (#{new_arr[:cohort]} cohort) (#{new_arr[:hobby]} is their hobby) (#{new_arr[:country]} is their birthplace) (#{new_arr[:height]} feet tall)").center(148)
     student_counter += 1
     index += 1
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "-------------".center(148)
+  puts "Overall, we have #{students.count} great students".center(148)
 end
 
 students = input_students
