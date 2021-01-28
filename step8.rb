@@ -5,13 +5,13 @@ def input_students
   students = []
   # get the first name
   puts "Give a name please."
-  name = gets.chomp
+  name = gets.strip
   puts "Give their hobby please."
-  hobby = gets.chomp
+  hobby = gets.strip
   puts "Where are they from?"
-  country = gets.chomp
+  country = gets.strip
   puts "How tall are they?"
-  height = gets.chomp
+  height = gets.strip
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
@@ -21,16 +21,16 @@ def input_students
     end
     # get another name from the user
     puts "Another name please."
-    name = gets.chomp
+    name = gets.strip
     if name.empty?
       break
     end
     puts "Their hobby please."
-    hobby = gets.chomp
+    hobby = gets.strip
     puts "Where are they from?"
-    country = gets.chomp
+    country = gets.strip
     puts "How tall are they?"
-    height = gets.chomp
+    height = gets.strip
   end
   # return the array of students
   students
