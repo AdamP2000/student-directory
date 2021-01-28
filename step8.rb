@@ -1,9 +1,7 @@
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-  # create an empty array
   students = []
-  # get the first name
   puts "Give a name please."
   name = gets.strip
   puts "Are they in the January or November cohort?"
@@ -23,14 +21,11 @@ def input_students
   country = gets.strip
   puts "How tall are they?"
   height = gets.strip
-  # while the name is not empty, repeat this code
   while !name.empty? do
-    # add the student hash to the array
     if name[0] == "A" && name.length < 12
       students << {name: name, cohort: cohort, hobby: hobby, country: country, height: height}
       puts "Now we have #{students.count} students"
     end
-    # get another name from the user
     puts "Another name please."
     name = gets.strip
     if name.empty?
@@ -54,7 +49,6 @@ def input_students
     puts "How tall are they?"
     height = gets.strip
   end
-  # return the array of students
   students
 end
 
@@ -114,7 +108,6 @@ def print_footer(students)
 end
 
 students = input_students
-#nothing happens until we call the methods
 print_header(students)
 print(students)
 print_footer(students)
