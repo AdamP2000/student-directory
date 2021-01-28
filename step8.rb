@@ -6,6 +6,17 @@ def input_students
   # get the first name
   puts "Give a name please."
   name = gets.strip
+  puts "Are they in the January or November cohort?"
+  cohort = gets.strip
+  until cohort == "January" || cohort == "November"
+    if cohort.empty?
+      puts "To be a student they have to be in a cohort so don't leave this blank."
+      cohort = gets.strip
+    else
+      puts "You made a typo, spell the month correctly."
+      cohort = gets.strip
+    end
+  end
   puts "Give their hobby please."
   hobby = gets.strip
   puts "Where are they from?"
@@ -16,7 +27,7 @@ def input_students
   while !name.empty? do
     # add the student hash to the array
     if name[0] == "A" && name.length < 12
-      students << {name: name, cohort: :november, hobby: hobby, country: country, height: height}
+      students << {name: name, cohort: cohort, hobby: hobby, country: country, height: height}
       puts "Now we have #{students.count} students"
     end
     # get another name from the user
@@ -24,6 +35,17 @@ def input_students
     name = gets.strip
     if name.empty?
       break
+    end
+    puts "Are they in the January or November cohort?"
+    cohort = gets.strip
+    until cohort == "January" || cohort == "November"
+      if cohort.empty?
+        puts "To be a student they have to be in a cohort so don't leave this blank."
+        cohort = gets.strip
+      else
+        puts "You made a typo, spell the month correctly."
+        cohort = gets.strip
+      end  
     end
     puts "Their hobby please."
     hobby = gets.strip
