@@ -36,9 +36,10 @@ def input_students
   students
 end
 
-def print_header
-  puts "The students of Villains Academy".center(148)
-  puts "-------------".center(148)
+def print_header(students)
+    puts "The students of Villains Academy".center(148)
+    puts "-------------".center(148)
+
 end
 
 def print(students)
@@ -53,12 +54,16 @@ def print(students)
 end
 
 def print_footer(students)
-  puts "-------------".center(148)
-  puts "Overall, we have #{students.count} great students".center(148)
+    puts "-------------".center(148)
+    if students.count == 1
+      puts "Overall, we have #{students.count} great student".center(148)
+    else
+      puts "Overall, we have #{students.count} great students".center(148)
+    end
 end
 
 students = input_students
 #nothing happens until we call the methods
-print_header
+print_header(students)
 print(students)
 print_footer(students)
