@@ -45,7 +45,7 @@ def input_students
       else
         puts "You made a typo, spell the month correctly."
         cohort = gets.strip
-      end  
+      end
     end
     puts "Their hobby please."
     hobby = gets.strip
@@ -66,13 +66,39 @@ def print_header(students)
 end
 
 def print(students)
-  student_counter = 1
+  january_group = []
+  november_group = []
   index = 0
   while index <= students.length - 1
     new_arr = students[index]
-    puts (student_counter.to_s + "." + " #{new_arr[:name]} (#{new_arr[:cohort]} cohort) (#{new_arr[:hobby]} is their hobby) (#{new_arr[:country]} is their birthplace) (#{new_arr[:height]} feet tall)").center(148)
-    student_counter += 1
+    if new_arr[:cohort] == "January"
+      january_group << new_arr
+    else
+      november_group << new_arr
+    end
     index += 1
+  end
+  if january_group.length > 0
+    puts "The students of the January cohort:".center(148)
+  end
+  january_index = 0
+  student_counter = 1
+  while january_index <= january_group.length - 1
+    january_arr = january_group[january_index]
+    puts (student_counter.to_s + "." + " #{january_arr[:name]} (#{january_arr[:cohort]} cohort) (#{january_arr[:hobby]} is their hobby) (#{january_arr[:country]} is their birthplace) (#{january_arr[:height]} feet tall)").center(148)
+    january_index += 1
+    student_counter += 1
+  end
+  if november_group.length > 0
+    puts "The students of the November cohort:".center(148)
+  end
+  november_index = 0
+  second_student_counter = 1
+  while november_index <= november_group.length - 1
+    november_arr = november_group[november_index]
+    puts (second_student_counter.to_s + "." + " #{november_arr[:name]} (#{november_arr[:cohort]} cohort) (#{november_arr[:hobby]} is their hobby) (#{november_arr[:country]} is their birthplace) (#{november_arr[:height]} feet tall)").center(148)
+    november_index += 1
+    second_student_counter += 1
   end
 end
 
