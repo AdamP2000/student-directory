@@ -3,8 +3,8 @@
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to file"
+  puts "4. Load the list from file"
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -26,7 +26,10 @@ def process(selection)
   when "3"
     save_students
   when "4"
-    load_students
+    puts "Enter name of file"
+    puts "or leave empty to open default file - students.csv"
+    load_name_file = gets.chomp
+    load_name_file.empty? ? load_students : load_students(load_name_file)
   else
     puts "I don't know what you meant, try again"
   end
@@ -75,8 +78,10 @@ def add_student(name, cohort)
 end
 
 def save_students
+  puts "Please enter filename"
+  filename = gets.chomp
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -84,7 +89,7 @@ def save_students
     file.puts csv_line
   end
   file.close
-  puts "File saved sucessfully!"
+  puts "File saved sucessfully to #{filename}!"
 end
 
 def load_students(filename = "students.csv")
