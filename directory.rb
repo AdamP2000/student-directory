@@ -37,13 +37,15 @@ def input_students
   puts "To finish, just hit return twice"
   # get the first name
   name = STDIN.gets.chomp
+  cohort = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    @students << {name: name, cohort: :november}
+    add_student(name, cohort)
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = STDIN.gets.chomp
+    cohort = STDIN.gets.chomp
   end
 end
 
@@ -68,6 +70,10 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
+def add_student(name, cohort)
+  @students << {name: name, cohort: cohort}
+end
+
 def save_students
   # open the file for writing
   file = File.open("students.csv", "w")
@@ -84,7 +90,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+  add_student(name, cohort)
   end
   file.close
 end
