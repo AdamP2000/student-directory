@@ -50,12 +50,12 @@ def input_students
 end
 
 def show_students
-  print_header
+  print_header_student_list
   print_student_list
-  print_footer
+  print_footer_student_list
 end
 
-def print_header
+def print_header_student_list
   puts "The students of Villains Academy"
   puts "-------------"
 end
@@ -66,7 +66,7 @@ def print_student_list
   end
 end
 
-def print_footer
+def print_footer_student_list
   puts "Overall, we have #{@students.count} great students"
 end
 
