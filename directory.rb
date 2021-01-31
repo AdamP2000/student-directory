@@ -1,3 +1,6 @@
+require 'csv'
+@loaded_filename = ""
+@default_filename = "students.csv"
 @students = [] # an empty array accessible to all methods
 
 def print_menu
@@ -77,40 +80,49 @@ def add_student(name, cohort)
   @students << {name: name, cohort: cohort}
 end
 
-def save_students
+def save_students(filename = @default_filename)
   puts "Please enter filename"
   filename = gets.chomp
-  # open the file for writing
-  file = File.open(filename, "w") do |file|
-  # iterate over the array of students
+  CSV.open(filename, "wb") do |csv|
   @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    csv << [student[:name], student[:cohort]]
   end
-  file.close
+  @loaded_filename = filename
   puts "File saved sucessfully to #{filename}!"
   end
 end
 
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r") do |file|
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-  add_student(name, cohort)
-  end
-  file.close
-  puts "File loaded sucessfully!"
-end
-end
+def load_students(filename = @default_filename)
+  if File.exists?(filename)
+     CSV.foreach(filename) do |row|
+       name, cohort = row
+       add_student(name, cohort)
+      end
+      @loaded_filename = filename
+      puts "File loaded sucessfully!"
+    else
+      if filename == @default_filename
+       puts "The default file #{@default_filename} was not found"
+       File.write("students.csv", "")
+       @loaded_filename = filename
+       puts "A new #{@default_filename} was created"
+      else
+       puts "*** WARNING *** File #{filename} not found"
+       puts "Using #{@loaded_filename}"
+      end
+   end
+ end
+
 
 def try_load_students
   filename = ARGV.first# first argument from the command line
   if filename.nil? # get out of the method if it isn't given
     puts "Loaded students.csv by default"
-    load_students()
+    @loaded_filename = @default_filename
+    load_students(@loaded_filename)
   elsif File.exists?(filename) # if it exists
+    @loaded_filename = filename
     load_students(filename)
      puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
